@@ -1,9 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Quản Lý Sinh Viên</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Hệ Thống Quản Lý Sinh Viên</h1>
+    </header>
+
+    <div id="container">
+      <!-- Trang Chính: Danh sách lớp -->
+      <div id="class-view">
+        <div class="flex justify-between align-center">
+          <h2>Danh Sách Lớp</h2>
+          <button class="add-btn" onclick="openAddClassModal()">
+            Thêm Lớp
+          </button>
+        </div>
+        <div id="classes-container">
+          <!-- Các lớp sẽ được hiển thị ở đây -->
+        </div>
+      </div>
+
+      <!-- Trang Quản Lý Sinh Viên -->
+      <div id="student-view" class="hidden">
+        <button class="back-btn" onclick="showClassView()">
+          &#8592; Quay lại danh sách lớp
+        </button>
+        <div class="flex justify-between align-center">
+          <h2>
+            Quản Lý Sinh Viên - Lớp: <span id="current-class-name"></span>
+          </h2>
+          <button class="add-btn" onclick="openAddStudentModal()">
+            Thêm Sinh Viên
+          </button>
+        </div>
+        <table id="students-table">
+          <thead>
+            <tr>
+              <th>Họ và Tên</th>
+              <th>Mã SV</th>
+              <th>Email</th>
+              <th>Số ĐT</th>
+              <th>Giới Tính</th>
+              <th>Điểm QT</th>
+              <th>Điểm Cuối Kì</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sinh viên sẽ được hiển thị ở đây -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Thêm Sinh Viên -->
+    <div id="add-student-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAddStudentModal()">&times;</span>
+        <h2>Thêm Sinh Viên Mới</h2>
+        <form id="add-student-form">
+          <label for="fullName">Họ và Tên:</label>
+          <input type="text" id="fullName" name="fullName" required />
+
+          <label for="studentId">Mã Sinh Viên:</label>
+          <input type="text" id="studentId" name="studentId" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="phone">Số Điện Thoại:</label>
+          <input type="tel" id="phone" name="phone" required />
+
+          <label for="gender">Giới Tính:</label>
+          <select id="gender" name="gender" required>
+            <option value="">--Chọn Giới Tính--</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+
+          <label for="processScore">Điểm Quá Trình:</label>
+          <input
+            type="number"
+            id="processScore"
+            name="processScore"
+            min="0"
+            max="10"
+            step="0.1"
+            required
+          />
+
+          <label for="finalScore">Điểm Cuối Kì:</label>
+          <input
+            type="number"
+            id="finalScore"
+            name="finalScore"
+            min="0"
+            max="10"
+            step="0.1"
+            required
+          />
+
+          <button type="submit" class="add-btn">Thêm Sinh Viên</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Thêm Lớp -->
+    <div id="add-class-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAddClassModal()">&times;</span>
+        <h2>Thêm Lớp Mới</h2>
+        <form id="add-class-form">
+          <label for="className">Tên Lớp:</label>
+          <input type="text" id="className" name="className" required />
+
+          <label for="classCode">Mã Lớp:</label>
+          <input type="text" id="classCode" name="classCode" required />
+
+          <label for="courseCode">Mã Học Phần:</label>
+          <input type="text" id="courseCode" name="courseCode" required />
+
+          <button type="submit" class="add-btn">Thêm Lớp</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
