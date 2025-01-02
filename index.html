@@ -5,13 +5,13 @@
     <title>Quản Lý Sinh Viên</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
     <header>
       <h1>Hệ Thống Quản Lý Sinh Viên</h1>
     </header>
 
     <div id="container">
-      <!-- Trang Chính: Danh sách lớp -->
       <div id="class-view">
         <div class="flex justify-between align-center">
           <h2>Danh Sách Lớp</h2>
@@ -19,12 +19,9 @@
             Thêm Lớp
           </button>
         </div>
-        <div id="classes-container">
-          <!-- Các lớp sẽ được hiển thị ở đây -->
-        </div>
+        <div id="classes-container"></div>
       </div>
 
-      <!-- Trang Quản Lý Sinh Viên -->
       <div id="student-view" class="hidden">
         <button class="back-btn" onclick="showClassView()">
           &#8592; Quay lại danh sách lớp
@@ -47,17 +44,15 @@
               <th>Giới Tính</th>
               <th>Điểm QT</th>
               <th>Điểm Cuối Kì</th>
+              <th>Tổng Điểm</th>
               <th>Hành Động</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Sinh viên sẽ được hiển thị ở đây -->
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
 
-    <!-- Modal Thêm Sinh Viên -->
     <div id="add-student-modal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeAddStudentModal()">&times;</span>
@@ -110,6 +105,66 @@
       </div>
     </div>
 
+    <!-- Modal Chỉnh Sửa Sinh Viên -->
+    <div id="edit-student-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditStudentModal()">&times;</span>
+        <h2>Chỉnh Sửa Thông Tin Sinh Viên</h2>
+        <form id="edit-student-form">
+          <input type="hidden" id="edit-student-id" />
+
+          <label for="edit-fullName">Họ và Tên:</label>
+          <input type="text" id="edit-fullName" name="edit-fullName" required />
+
+          <label for="edit-studentId">Mã Sinh Viên:</label>
+          <input
+            type="text"
+            id="edit-studentId"
+            name="edit-studentId"
+            required
+          />
+
+          <label for="edit-email">Email:</label>
+          <input type="email" id="edit-email" name="edit-email" required />
+
+          <label for="edit-phone">Số Điện Thoại:</label>
+          <input type="tel" id="edit-phone" name="edit-phone" required />
+
+          <label for="edit-gender">Giới Tính:</label>
+          <select id="edit-gender" name="edit-gender" required>
+            <option value="">--Chọn Giới Tính--</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+
+          <label for="edit-processScore">Điểm Quá Trình:</label>
+          <input
+            type="number"
+            id="edit-processScore"
+            name="edit-processScore"
+            min="0"
+            max="10"
+            step="0.1"
+            required
+          />
+
+          <label for="edit-finalScore">Điểm Cuối Kì:</label>
+          <input
+            type="number"
+            id="edit-finalScore"
+            name="edit-finalScore"
+            min="0"
+            max="10"
+            step="0.1"
+            required
+          />
+
+          <button type="submit" class="add-btn">Lưu Thay Đổi</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Modal Thêm Lớp -->
     <div id="add-class-modal" class="modal">
       <div class="modal-content">
@@ -126,6 +181,43 @@
           <input type="text" id="courseCode" name="courseCode" required />
 
           <button type="submit" class="add-btn">Thêm Lớp</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Chỉnh Sửa Lớp -->
+    <div id="edit-class-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditClassModal()">&times;</span>
+        <h2>Chỉnh Sửa Thông Tin Lớp</h2>
+        <form id="edit-class-form">
+          <input type="hidden" id="edit-class-id" />
+
+          <label for="edit-className">Tên Lớp:</label>
+          <input
+            type="text"
+            id="edit-className"
+            name="edit-className"
+            required
+          />
+
+          <label for="edit-classCode">Mã Lớp:</label>
+          <input
+            type="text"
+            id="edit-classCode"
+            name="edit-classCode"
+            required
+          />
+
+          <label for="edit-courseCode">Mã Học Phần:</label>
+          <input
+            type="text"
+            id="edit-courseCode"
+            name="edit-courseCode"
+            required
+          />
+
+          <button type="submit" class="add-btn">Lưu Thay Đổi</button>
         </form>
       </div>
     </div>
